@@ -2,53 +2,54 @@ package com.devlucasboaraujo.listaDeSeries.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-// A anotação `@Entity` em Java, usando `jakarta.persistence.Entity`, indica que a classe `Series` 
-// está mapeada para uma tabela em um banco de dados relacional. Isso permite que objetos da classe sejam 
-// armazenados e recuperados do banco de dados usando a Java Persistence API (JPA). 
-// A anotação @Table é o nome da tabela no banco de dados relacional
-// A anotação @Id é para definir como chave primaria
-// A anotação @GeneratedValue é para que o id seja autoincrementado pelo banco de dados
-
 @Entity
 @Table(name = "tb_series")
 public class Series {
-	
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String titulo;
-	private Integer ano;
-	private String genero;
-	private String plataforma;
-	private Double pontuaçao;
-	private String imgUrl;
-	private String descriçaoCurta;
-	private String DecriçaoLonga;
+    private Long id;
 
-	public Series() {
+    private String titulo;
+    private Integer ano;
+    private String genero;
+    private String plataforma;
+    private Double pontuacao;
 
-	}
+    @Column(name = "img_url")
+    private String imgUrl;
 
-	public Series(Long id, String titulo, Integer ano, String genero, String plataforma, Double pontuaçao,String imgUrl,
-			String descriçaoCurta, String decriçaoLonga) {
-		this.id = id;
-		this.titulo = titulo;
-		this.ano = ano;
-		this.genero = genero;
-		this.plataforma = plataforma;
-		this.pontuaçao = pontuaçao;
-		this.imgUrl = imgUrl;
-		this.descriçaoCurta = descriçaoCurta;
-		this.DecriçaoLonga = decriçaoLonga;
-	}
+    @Column(columnDefinition = "TEXT")
+    private String descricaoCurta;
 
-	public Long getId() {
+    @Column(columnDefinition = "TEXT")
+    private String descricaoLonga;
+
+    public Series() {
+    }
+
+    public Series(Long id, String titulo, Integer ano, String genero, String plataforma, Double pontuacao, String imgUrl,
+            String descricaoCurta, String descricaoLonga) {
+        this.id = id;
+        this.titulo = titulo;
+        this.ano = ano;
+        this.genero = genero;
+        this.plataforma = plataforma;
+        this.pontuacao = pontuacao;
+        this.imgUrl = imgUrl;
+        this.descricaoCurta = descricaoCurta;
+        this.descricaoLonga = descricaoLonga;
+    }
+
+
+    public Long getId() {
 		return id;
 	}
 
@@ -88,13 +89,12 @@ public class Series {
 		this.plataforma = plataforma;
 	}
 
-	
-	public Double getPontuaçao() {
-		return pontuaçao;
+	public Double getPontuacao() {
+		return pontuacao;
 	}
 
-	public void setPontuaçao(Double pontuaçao) {
-		this.pontuaçao = pontuaçao;
+	public void setPontuacao(Double pontuacao) {
+		this.pontuacao = pontuacao;
 	}
 
 	public String getImgUrl() {
@@ -105,38 +105,36 @@ public class Series {
 		this.imgUrl = imgUrl;
 	}
 
-	public String getDescriçaoCurta() {
-		return descriçaoCurta;
+	public String getDescricaoCurta() {
+		return descricaoCurta;
 	}
 
-	public void setDescriçaoCurta(String descriçaoCurta) {
-		this.descriçaoCurta = descriçaoCurta;
+	public void setDescricaoCurta(String descricaoCurta) {
+		this.descricaoCurta = descricaoCurta;
 	}
 
-	public String getDecriçaoLonga() {
-		return DecriçaoLonga;
+	public String getDescricaoLonga() {
+		return descricaoLonga;
 	}
 
-	public void setDecriçaoLonga(String decriçaoLonga) {
-		DecriçaoLonga = decriçaoLonga;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public void setDescricaoLonga(String descricaoLonga) {
+		this.descricaoLonga = descricaoLonga;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Series other = (Series) obj;
-		return Objects.equals(id, other.id);
-	}
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
-	
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Series other = (Series) obj;
+        return Objects.equals(id, other.id);
+    }
 }
