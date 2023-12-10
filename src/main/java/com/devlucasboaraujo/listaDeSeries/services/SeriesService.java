@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devlucasboaraujo.listaDeSeries.dto.SeriesDTO;
 import com.devlucasboaraujo.listaDeSeries.dto.SeriesMinDTO;
 import com.devlucasboaraujo.listaDeSeries.entities.Series;
+import com.devlucasboaraujo.listaDeSeries.projections.SeriesMinProjection;
 import com.devlucasboaraujo.listaDeSeries.repositories.SeriesRepository;
 
 // O serviço tem que devolver um DTO
@@ -36,6 +37,12 @@ public class SeriesService<GameMinDTO> {
 	@Transactional(readOnly = true)
 	public List<SeriesMinDTO> findAll(){
 		List<Series> result = seriesRepository.findAll();
+		return result.stream().map(x -> new SeriesMinDTO(x)).toList();
+	} 
+	
+	@Transactional(readOnly = true)
+	public List<SeriesMinDTO> findByList(Long listaId){
+		List<SeriesMinProjection> result = seriesRepository.searchByList(listaId);
 		return result.stream().map(x -> new SeriesMinDTO(x)).toList();
 	} 
 

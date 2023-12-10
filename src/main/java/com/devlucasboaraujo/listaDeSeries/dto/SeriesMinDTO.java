@@ -1,6 +1,7 @@
 package com.devlucasboaraujo.listaDeSeries.dto;
 
 import com.devlucasboaraujo.listaDeSeries.entities.Series;
+import com.devlucasboaraujo.listaDeSeries.projections.SeriesMinProjection;
 
 // DTO (Data Transfer Object) é um objeto customizado utilizado para extrair apenas as informações necessárias 
 //de uma entidade que contém uma grande quantidade de dados. 
@@ -23,6 +24,14 @@ public class SeriesMinDTO {
 		ano = entity.getAno();
 		imgUrl = entity.getImgUrl();
 		descricaoCurta = entity.getDescricaoCurta();
+	}
+	
+	public SeriesMinDTO(SeriesMinProjection projection) {
+		id = projection.getId();
+		titulo = projection.getTitulo();
+		ano = projection.getAno();
+		imgUrl = projection.getImgUrl();
+		descricaoCurta = projection.getDescricaoCurta();
 	}
 
 	public Long getId() {
