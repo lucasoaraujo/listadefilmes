@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.devlucasboaraujo.listaDeSeries.dto.SeriesDTO;
 import com.devlucasboaraujo.listaDeSeries.dto.SeriesMinDTO;
 import com.devlucasboaraujo.listaDeSeries.entities.Series;
 import com.devlucasboaraujo.listaDeSeries.repositories.SeriesRepository;
@@ -21,10 +23,20 @@ public class SeriesService<GameMinDTO> {
 	@Autowired
 	private SeriesRepository seriesRepository;
 	
+// @Transactional(readOnly = true)significa que a transação é destinada apenas para leitura no banco de dados,
+// qualquer tentativa de modificar (inserir, atualizar, excluir) dados resultará em uma exceção.	
+	
+	
+	@Transactional(readOnly = true)
+	public SeriesDTO findById(Long id) {
+		Series result = seriesRepository.findById(id).get();
+		return new SeriesDTO(result);
+	}
+	
+	@Transactional(readOnly = true)
 	public List<SeriesMinDTO> findAll(){
 		List<Series> result = seriesRepository.findAll();
 		return result.stream().map(x -> new SeriesMinDTO(x)).toList();
-	}
-	 
+	} 
 
 }

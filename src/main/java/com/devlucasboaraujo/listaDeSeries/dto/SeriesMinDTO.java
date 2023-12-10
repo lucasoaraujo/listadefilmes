@@ -11,7 +11,7 @@ public class SeriesMinDTO {
 	private String titulo;
 	private Integer ano;
 	private String imgUrl;
-	private String descricaoLonga;
+	private String descricaoCurta;
 	
 	public SeriesMinDTO(){
 		
@@ -22,7 +22,7 @@ public class SeriesMinDTO {
 		titulo = entity.getTitulo();
 		ano = entity.getAno();
 		imgUrl = entity.getImgUrl();
-		descricaoLonga = entity.getDescricaoLonga();
+		descricaoCurta = entity.getDescricaoCurta();
 	}
 
 	public Long getId() {
@@ -42,7 +42,7 @@ public class SeriesMinDTO {
 	}
 
 	public String getDescricaoLonga() {
-		return descricaoLonga;
+		return descricaoCurta;
 	}
 	
 	
