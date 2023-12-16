@@ -50,7 +50,7 @@ public class SeriesMinDTO {
 		return imgUrl;
 	}
 
-	public String getDescricaoLonga() {
+	public String getDescricaoCurta() {
 		return descricaoCurta;
 	}
 	

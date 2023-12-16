@@ -8,5 +8,6 @@ public interface SeriesMinProjection {
 	Integer getPosicao();
 	String getTitulo();
 	String getDescricaoCurta();
+	
 
 }
